@@ -1,6 +1,49 @@
 ---
-# Feel free to add content and custom Front Matter to this file.
-# To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
-
 layout: home
+nav_index: 0
 ---
+
+# Scala Infer
+With the addition of a few keywords, `scala-infer` turns scala into a probabilistic programming language.
+To achieve scalability, inference is based on gradients of the (variational approximation to) the
+posterior distribution.  Each draw from a distribution is accompanied by a *guide* distribution.
+
+A probabilistic model in `scala-infer` is written as regular scala code.  Values are drawn from
+distributions and are used to generate data.  Such a model is known as *generative*, as it provides
+an explicit process.
+
+Three new keywords are introduced:
+* `infer` to define a model
+* `sample` to draw a random variable from a distribution
+* `observe` to bind data to distributions in the model
+
+When a value is sampled, two distributions are needed; the *prior* and the (variational
+approximation to) the *posterior*.  Actual sample values are drawn from the posterior, but
+the prior is the starting point of the buildup of the posterior.  Without observations, the
+posterior would be equal to the prior.
+
+Parameters of the variational posterior are optimized by gradient descent.  For each sample from
+the model, a backward pass calculates the gradients of the loss function.  For variational inference,
+the loss function is the ELBO, a lower bound on the evidence.
+
+Different tactics are used for discrete and continuous variables.  For continuous variables,
+the reparametrization trick can be used to obtain a low variance estimator.  Discrete variables
+use black-box variational inference, which only requires gradients of the score function to the
+parameters.
+
+## Including it in your project
+To leverage `scala-infer` in your project, update `plugins.sbt` with
+```scala
+resolvers += Resolver.bintrayRepo("fvlankvelt", "maven")
+```
+and in `build.sbt`, add
+```scala
+libraryDependencies += "fvlankvelt" %% "scala-infer" % "0.1"
+```
+
+## Running the project
+While intended to become a library to be used, so far the only used ways of triggering the
+macro expansion and execution is to use either
+* `sbt core/test`, or
+* `sbt app/run`
+

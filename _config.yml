@@ -28,6 +28,7 @@ markdown: kramdown
 #plugins:
 #  - jekyll-feed
 remote_theme: pmarsceill/just-the-docs
+color_scheme: dark
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
