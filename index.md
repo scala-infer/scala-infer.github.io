@@ -1,6 +1,6 @@
 ---
 layout: home
-nav_index: 0
+nav_corder: 0
 ---
 
 # Scala Infer
@@ -31,19 +31,26 @@ the reparametrization trick can be used to obtain a low variance estimator.  Dis
 use black-box variational inference, which only requires gradients of the score function to the
 parameters.
 
-## Including it in your project
+## Including it in your sbt project
 To leverage `scala-infer` in your project, update `plugins.sbt` with
 ```scala
-resolvers += Resolver.bintrayRepo("fvlankvelt", "maven")
+resolvers += Resolver.bintrayRepo("scala-infer", "maven")
 ```
 and in `build.sbt`, add
 ```scala
-libraryDependencies += "fvlankvelt" %% "scala-infer" % "0.1"
+libraryDependencies += "scala-infer" %% "scala-infer" % "0.2"
 ```
 
-## Running the project
-While intended to become a library to be used, so far the only used ways of triggering the
-macro expansion and execution is to use either
-* `sbt core/test`, or
-* `sbt app/run`
-
+## Including it in a jupyter notebook
+With the installation of [Almond](https://almond.sh/) it is possible to use
+Scala in a Jupyter environment.  Assuming it is installed, execute
+```scala
+interp.repositories() ++= Seq(
+    coursier.MavenRepository("https://dl.bintray.com/scala-infer/maven")
+)
+```
+followed by
+```scala
+import $ivy.`scala-infer::scala-infer:0.2`
+```
+to get the goodness of `scala-infer` at your disposal.
