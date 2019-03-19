@@ -54,3 +54,6 @@ followed by
 import $ivy.`scala-infer::scala-infer:0.2`
 ```
 to get the goodness of `scala-infer` at your disposal.
+
+## Source
+The source for `scala-infer` can be found at [https://github.com/scala-infer/scala-infer](https://github.com/scala-infer/scala-infer).
