@@ -38,7 +38,7 @@ resolvers += Resolver.bintrayRepo("scala-infer", "maven")
 ```
 and in `build.sbt`, add
 ```scala
-libraryDependencies += "scala-infer" %% "scala-infer" % "0.2"
+libraryDependencies += "scala-infer" %% "scala-infer" % "0.3"
 ```
 
 ## Including it in a jupyter notebook
@@ -51,7 +51,7 @@ interp.repositories() ++= Seq(
 ```
 followed by
 ```scala
-import $ivy.`scala-infer::scala-infer:0.2`
+import $ivy.`scala-infer::scala-infer:0.3`
 ```
 to get the goodness of `scala-infer` at your disposal.
 

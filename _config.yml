@@ -28,7 +28,7 @@ markdown: kramdown
 #plugins:
 #  - jekyll-feed
 remote_theme: pmarsceill/just-the-docs
-color_scheme: dark
+color_scheme: light
 
 ga_tracking: UA-136865284-1
 
