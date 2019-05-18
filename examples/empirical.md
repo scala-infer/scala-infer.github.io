@@ -88,5 +88,8 @@ After optimization, we can see a clear difference between relevant and
 irrelevant parameters.  Parameter `a_prior_s` drives the standard deviation
 in the prior for `a_weight` to `1`, while the same for `b_weight` gets close to
 `0`.
-while `b` is dr
 
+## Notebook
+The Jupyter notebook with the code is available at
+[Automatic Relevance Determination.ipynb](https://github.com/scala-infer/notebooks/blob/master/Automatic Relevance Determination.ipynb)
+in the [scala-infer notebooks](https://github.com/scala-infer/notebooks) project.

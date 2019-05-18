@@ -1,9 +1,9 @@
 ---
-title: Mixture
+title: Two component Mixture
 parent: Examples
 nav_order: 3
 ---
-## Example: Two component Mixture
+# Two component Mixture
 So far, we've seen examples of global variables being fit to a variational
 posterior.  However, it's also possible to fit local variables.  Focussing on
 the model definition part:
@@ -55,4 +55,6 @@ posterior distribution immediately for new data points.  No optimization of new
 parameters is needed.
 
 ## Notebook
-The notebook with the code is available at [https://github.com/scala-infer/notebooks/blob/master/Mixture.ipynb](https://github.com/scala-infer/notebooks/blob/master/Mixture.ipynb).
+The Jupyter notebook with the code is available at
+[Mixture.ipynb](https://github.com/scala-infer/notebooks/blob/master/Mixture.ipynb)
+in the [scala-infer notebooks](https://github.com/scala-infer/notebooks) project.

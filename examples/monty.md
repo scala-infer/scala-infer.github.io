@@ -1,9 +1,9 @@
 ---
-title: Monty Hall
+title: Monty Hall Bandit
 parent: Examples
 nav_order: 4
 ---
-# Monty Hall
+# Monty Hall Bandit
 Monty Hall was a television host for the game show "Let's Make a Deal".  A
 contenstant is given the choice between 3 doors.  Two of them contain a goat,
 one of them a car.  When she has chosen a door, the host opens one of the two
