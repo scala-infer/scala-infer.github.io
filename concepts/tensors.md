@@ -17,11 +17,58 @@ case class Batch(size: Int) extends Dim[Batch]
 
 val shape = Batch(2)
 val data = Array(0.0f, 1.0f)
-val tensor: Value[ArrayTensor, Batch] = Value(ArrayTensor(shape.sizes, data), shape)
+val tensor = Value(ArrayTensor(shape.sizes, data), shape)
 ```
-where the type of the final `tensor` variable has been added for clarity.  A
-tensor can be backed by different data structures.  Above the java native
+A tensor can be backed by different data structures.  Above the java native
 `Array[Float]` is used, but it is also possible to use Nd4j's `INDArray`'s for
 example.
 
-Apart from 
+Higher-order tensors are obtained by concatenating dimensions into a *shape*.
+```scala
+case class Width(size: Int) extends Dim[Width]
+val width = Width(3)
+
+case class Height(size: Int) extends Dim[Height]
+val height = Height(3)
+
+type GridShape = Width :#: Height
+val gridShape = width :#: height
+```
+
+## Tensordot
+While for tensors element-wise operations are useful and needed in many models,
+an important operation that does not exist for scalar variables is *tensordot*,
+AKA *tensor contraction*.  A contraction of two tensors multiplies their
+elements, summing over their common dimensions.
+
+This generalizes well-known multi-dimensional operations like
+* vector inner product
+* matrix-vector product
+* matrix-matrix product
+
+```scala
+case class A(size: Int) extends Dim[A]
+case class B(size: Int) extends Dim[B]
+case class C(size: Int) extends Dim[C]
+
+val a = A(1)
+val b = B(2)
+val c = C(3)
+
+val xShape = a :#: b
+val xData = ArrayTensor(xShape.sizes, Array(1f, 2f))
+
+val yShape = b :#: c
+val yData = ArrayTensor(yShape.sizes, Array(1f, 2f, 3f, 4f, 5f, 6f))
+
+val x = Value(xData, xShape)
+val y = Value(yData, yShape)
+
+// inner product of vector with itself -> returns scalar
+val xx: Value[ArrayTensor, Scalar] = x :*: x
+
+// matrix matrix product - sum over common dimension
+val z: Value[ArrayTensor, C :#: A] = x :*: y
+```
+where the types of `xx` and `z` have been added for clarity (scalas inference
+mechanism is perfectly able to infer this by itself, thank you very much).
